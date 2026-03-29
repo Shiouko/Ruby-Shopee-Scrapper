@@ -208,6 +208,35 @@ src/
 4. Results are cached in SQLite and returned to the client
 5. Subsequent requests check the cache first (30-min TTL)
 
+## Important: Anti-Bot Protection
+
+Shopee Malaysia has **aggressive anti-bot protection** that blocks requests from cloud/datacenter IPs (AWS, Fly.io, DigitalOcean, etc.) with error `90309999`.
+
+**The scraper will only work if you run it from one of these environments:**
+
+1. **Residential IP** -- Your own PC/laptop/home server (most reliable)
+2. **Authenticated session** -- Log into Shopee in the browser before scraping
+3. **Residential proxy** -- Route requests through a residential proxy service
+
+The scraper uses Playwright to visit Shopee's homepage with a headless browser, which generates the required anti-bot cookies (`sz-token`, `SPC_F`, `af-ac-enc-dat`, etc.). This works fine from residential IPs but Shopee will still block datacenter IPs regardless of cookies.
+
+### Running Locally (Recommended)
+
+```bash
+git clone https://github.com/Shiouko/Ruby-Shopee-Scrapper.git
+cd Ruby-Shopee-Scrapper
+npm install
+npm run dev
+```
+
+The scraper will launch Chromium via Playwright, visit Shopee to get cookies, and then you're good to go.
+
+### If You Get Error 90309999
+
+- You're running on a cloud server -- switch to a residential/home IP
+- Your IP has been flagged -- try a different network
+- Cookies expired -- the scraper auto-refreshes, but a server restart may help
+
 ## Rate Limiting Notes
 
 Shopee's API has rate limiting in place. This scraper:
