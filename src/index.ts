@@ -22,6 +22,16 @@ getDatabase();
 const app = new Hono();
 const scraper = new ShopeeScraper();
 
+// Flag to track initialization
+let initialized = false;
+
+async function ensureInit() {
+  if (!initialized) {
+    await scraper.init();
+    initialized = true;
+  }
+}
+
 // --- Routes ---
 
 // Root - API info
@@ -73,6 +83,7 @@ app.get('/api/search', async (c) => {
     }
 
     // Scrape fresh results
+    await ensureInit();
     const products = await scraper.searchProducts(query, limit, page);
 
     // Cache results
@@ -162,6 +173,7 @@ app.post('/api/scrape', async (c) => {
     }
 
     log('info', `Scrape triggered for "${query}" (limit: ${limit})`);
+    await ensureInit();
     const products = await scraper.searchProducts(query, limit);
 
     if (products.length > 0) {
@@ -195,8 +207,9 @@ setInterval(() => {
 }, 10 * 60 * 1000); // Every 10 minutes
 
 // Graceful shutdown
-function shutdown() {
+async function shutdown() {
   log('info', 'Shutting down...');
+  await scraper.close();
   closeDatabase();
   server.close();
   process.exit(0);

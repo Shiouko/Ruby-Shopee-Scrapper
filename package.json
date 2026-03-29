@@ -14,7 +14,13 @@
     "type": "git",
     "url": "git+https://github.com/Shiouko/Ruby-Shopee-Scrapper.git"
   },
-  "keywords": ["shopee", "scraper", "malaysia", "api", "typescript"],
+  "keywords": [
+    "shopee",
+    "scraper",
+    "malaysia",
+    "api",
+    "typescript"
+  ],
   "author": "Ruby",
   "license": "MIT",
   "bugs": {
@@ -26,7 +32,10 @@
     "axios": "^1.14.0",
     "better-sqlite3": "^12.8.0",
     "cheerio": "^1.2.0",
-    "hono": "^4.12.9"
+    "hono": "^4.12.9",
+    "playwright": "^1.58.2",
+    "playwright-extra": "^4.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
