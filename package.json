@@ -1,0 +1,37 @@
+{
+  "name": "ruby-shopee-scrapper",
+  "version": "1.0.0",
+  "description": "Efficient Shopee Malaysia product scraper with REST API",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "scrape": "tsx src/cli.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shiouko/Ruby-Shopee-Scrapper.git"
+  },
+  "keywords": ["shopee", "scraper", "malaysia", "api", "typescript"],
+  "author": "Ruby",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Shiouko/Ruby-Shopee-Scrapper/issues"
+  },
+  "homepage": "https://github.com/Shiouko/Ruby-Shopee-Scrapper#readme",
+  "dependencies": {
+    "@hono/node-server": "^1.19.11",
+    "axios": "^1.14.0",
+    "better-sqlite3": "^12.8.0",
+    "cheerio": "^1.2.0",
+    "hono": "^4.12.9"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^25.5.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  }
+}
